@@ -1,11 +1,15 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-progress-bar [value]="progress"></ion-progress-bar>
 
   <ion-content>
+    <div class="card">
     <ion-card>
       
       <ion-card-header>
@@ -14,8 +18,13 @@
       </ion-card-header>
           
       <ion-card-content>
-        Mathias Kaempffer
+        <h3>Mathias Kaempffer</h3>
+        <br>Usuario: Conductor<br>
+        <br>Vehículo: Nissan Kicks<br>
+        <br>Color vehículo: Azul<br>
+        <br>Patente: GK SB 78<br>
       </ion-card-content>
     </ion-card>
+    </div>
     
 </ion-content>

@@ -23,16 +23,21 @@
     <ion-item>
       <ion-icon name="person-circle-outline" slot="start"></ion-icon>
       <ion-label>Francisco</ion-label>
-      <ion-button (click)="presentPopover($event)" fill="outline" slot="end">Ver</ion-button>
-      <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+      <ion-button  id="card-1" slot="end">Ver</ion-button>
+      <ion-popover trigger="card-1" triggerAction="click">
         <ng-template>
-          <ion-content class="ion-padding">Test</ion-content>
+          <ion-content class="ion-padding">
+            frai.gonzalez@duocuc.cl
+          </ion-content>
         </ng-template>
       </ion-popover>
     </ion-item>
   
     <ion-card-content>
       Francisco González, Analista Programador de DuocUC, desarrollador especializado en aplicaciones móviles.
+      <div>
+        <ion-img src="/assets/img/dog1.jpeg" widht="60px" height="60px"></ion-img>
+      </div>
     </ion-card-content>
   </ion-card>
   
@@ -40,16 +45,21 @@
     <ion-item>
       <ion-icon name="person-circle-outline" slot="start"></ion-icon>
       <ion-label>Mathias</ion-label>
-      <ion-button (click)="presentPopover($event)" fill="outline" slot="end">Ver</ion-button>
-      <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+      <ion-button  id="card-2" slot="end">Ver</ion-button>
+      <ion-popover trigger="card-2" triggerAction="click">
         <ng-template>
-          <ion-content class="ion-padding">Test</ion-content>
+          <ion-content class="ion-padding">
+            ma.kaempffer@duocuc.cl
+          </ion-content>
         </ng-template>
       </ion-popover>
     </ion-item>
   
     <ion-card-content>
       Mathias Kaempffer, Analista Programador de Duoc Uc, desarrollador especializado en faltar a clases.
+      <div>
+        <ion-img src="/assets/img/dog2.jpg" widht="60px" height="60px"></ion-img>
+      </div>
     </ion-card-content>
   </ion-card>
 
