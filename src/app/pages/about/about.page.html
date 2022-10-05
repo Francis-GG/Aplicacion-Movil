@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>About</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Equipo de Trabajo</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Nuestro equipo de trabajo cuenta con profesionales con experiencia en el desarrollo de aplicaciones móviles.
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-item>
+      <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+      <ion-label>Francisco</ion-label>
+      <ion-button (click)="presentPopover($event)" fill="outline" slot="end">Ver</ion-button>
+      <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+        <ng-template>
+          <ion-content class="ion-padding">Test</ion-content>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+  
+    <ion-card-content>
+      Francisco González, Analista Programador de DuocUC, desarrollador especializado en aplicaciones móviles.
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    <ion-item>
+      <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+      <ion-label>Mathias</ion-label>
+      <ion-button (click)="presentPopover($event)" fill="outline" slot="end">Ver</ion-button>
+      <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+        <ng-template>
+          <ion-content class="ion-padding">Test</ion-content>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+  
+    <ion-card-content>
+      Descripción temporal
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
