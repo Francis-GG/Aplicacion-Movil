@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'splashscreen',
     loadChildren: () => import('./pages/splashscreen/splashscreen.module').then( m => m.SplashscreenPageModule)
+  },  {
+    path: 'conversor',
+    loadChildren: () => import('./pages/conversor/conversor.module').then( m => m.ConversorPageModule)
   }
+
 
 ];
 

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Conversor</ion-title>
+  </ion-toolbar>
+</ion-header>
+  <ion-content>
+    <div class="card">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Conversor de divisas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Monto a convertir:</ion-label>
+          <ion-input placeholder="0" id="montoInicial"></ion-input>
+        </ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-select interface="action-sheet" placeholder="Seleccione divisa" id="divisaInicial">
+              <ion-select-option value="usd">USD</ion-select-option>
+              <ion-select-option value="euro">Euro</ion-select-option>
+              <ion-select-option value="clp">CLP</ion-select-option>
+              <ion-select-option value="btc">BTC</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-select interface="action-sheet" placeholder="Seleccione divisa" id="divisaFinal">
+              <ion-select-option value="usd">USD</ion-select-option>
+              <ion-select-option value="euro">Euro</ion-select-option>
+              <ion-select-option value="clp">CLP</ion-select-option>
+              <ion-select-option value="btc">BTC</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-label id="montoFinal">Monto final: </ion-label>
+      </ion-card-content>
+      <ion-button id="botonConvertir" (click)="convertirDivisas()">Convertir</ion-button>
+    </ion-card>
+    </div>
+</ion-content>
