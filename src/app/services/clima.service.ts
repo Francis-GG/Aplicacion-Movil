@@ -10,8 +10,8 @@ export class ClimaService {
 
   constructor(private http: HttpClient) { }
 
-getClimaData(): Observable<any> {
-    return this.http.get(`${environment.apiClima}lat=44.34&lon=10.99&appid=${environment.apiKeyClima}&units=metric`);
+getClimaData(latitude, longitude): Observable<any> {
+    return this.http.get(`${environment.apiClima}lat=${latitude}&lon=${longitude}&appid=${environment.apiKeyClima}&units=metric`);
   }
 
 }
