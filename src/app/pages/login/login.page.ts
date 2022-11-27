@@ -16,8 +16,9 @@ export class LoginPage implements OnInit {
     this.presentLoanding(message);
 
     setTimeout(() => {
-      this.loading.dismiss();
-    }, 3000);
+      if (this.loading){
+        this.loading.dismiss();
+      }}, 2000);
   }
 
   async presentLoanding(message: string){
