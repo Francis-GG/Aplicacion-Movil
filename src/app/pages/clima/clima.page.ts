@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClimaService } from 'src/app/services/clima.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-clima',
@@ -7,23 +8,28 @@ import { ClimaService } from 'src/app/services/clima.service';
   styleUrls: ['./clima.page.scss'],
 })
 export class ClimaPage implements OnInit {
-
-  constructor(private climaService: ClimaService) { }
+  loadingElement: HTMLIonLoadingElement;
+  constructor(private climaService: ClimaService, 
+              private loadingCtrl: LoadingController) { }
 
   results = null;
   latitude = 0;
   longitude = 0;
 
   ngOnInit() {
-     navigator.geolocation.getCurrentPosition((position) => {
+      this.showLoading();
+      navigator.geolocation.getCurrentPosition((position) => {
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
       console.log(this.latitude);
       console.log(this.longitude);
       this.climaService.getClimaData(this.latitude, this.longitude).subscribe((res) => {
         this.results = res;
+        this.funcionClima();
+        this.loadingElement.dismiss();
        });
     });
+
   }
 
   funcionClima(){
@@ -43,6 +49,14 @@ export class ClimaPage implements OnInit {
 
 
     console.log(this.results);
+  }
+
+  async showLoading() {
+    this.loadingElement = await this.loadingCtrl.create({
+      message: 'Cargando Clima...',
+      cssClass: 'custom-loading'
+    });
+    this.loadingElement.present();
   }
 
 

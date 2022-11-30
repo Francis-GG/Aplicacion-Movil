@@ -24,7 +24,6 @@ export class HomePage {
     private firestore:Firestore) {
     this.getUserProfile();
     this.getPersonas();
-    
   }
 
   getUserProfile(){
