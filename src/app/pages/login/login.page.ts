@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,29 +11,65 @@ import { LoadingController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  loading : HTMLIonLoadingElement;
+  credentials!: FormGroup;
 
-  constructor(private loadingCtrl:LoadingController) {}
+  constructor(
+    private formBuilder:FormBuilder,
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private authService: AuthService,
+    private router: Router ) { }
 
-  cargarLoading(message: string){
-    this.presentLoanding(message);
-
-    setTimeout(() => {
-      if (this.loading){
-        this.loading.dismiss();
-      }}, 2000);
-  }
-
-  async presentLoanding(message: string){
-    this.loading = await this.loadingCtrl.create({
-      message,
+  ngOnInit() {
+    this.credentials = this.formBuilder.group({
+      email: ['',[Validators.required, Validators.email]],
+      password: ['',[Validators.required, Validators.minLength(6)]]
     });
-
-    await this.loading.present();
   }
 
-  ngOnInit(){
-    this.cargarLoading('Bienvenido a TeLlevoApp');
-    console.log('ngOnInit');
+  get email(){
+    return this.credentials?.get('email');
   }
+
+  get password(){
+    return this.credentials?.get('password');
+  }
+
+  async login(){
+    const loading = await this.loadingCtrl.create();
+    await loading.present()
+    const user = await this.authService.login(this.credentials.value.email,this.credentials.value.password);
+    await loading.dismiss();
+
+    if (user){
+      this.router.navigateByUrl('/home',{replaceUrl:true});
+    }
+    else {
+      this.alertPresent('Login Error','Datos ingresados incorrectos.');
+    }
+  }
+
+  async register(){
+    const loading = await this.loadingCtrl.create();
+    await loading.present()
+    const user = await this.authService.register(this.credentials.value.email,this.credentials.value.password);
+    await loading.dismiss();
+
+    if (user){
+      this.router.navigateByUrl('/home',{replaceUrl:true});
+    }
+    else {
+      this.alertPresent('Register Error','Datos ingresados incorrectos.');
+    }
+  }
+
+  async alertPresent(header:string,mesagge:string){
+    const alert = await this.alertCtrl.create({
+      header:header,
+      message:mesagge,
+      buttons:['OK'],
+    });
+    await alert.present();
+  }
+
 }
