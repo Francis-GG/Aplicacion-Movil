@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="persona">
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input type="text" [(ngModel)]="persona.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Lastname</ion-label>
+      <ion-input type="text" [(ngModel)]="persona.lastname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Gender</ion-label>
+      <ion-input type="text" [(ngModel)]="persona.gender"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Age</ion-label>
+      <ion-input type="number" [(ngModel)]="persona.age"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="persona.email"></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="stacked">Image</ion-label>
+      <ion-input type="url" [(ngModel)]="persona.image"></ion-input>
+    </ion-item>
+  </div>
+
+  <ion-button expand="block" color="success" (click)="updatePersona()">
+    <ion-icon name="save" slot="start">Update</ion-icon>
+  </ion-button>
+  <ion-button expand="block" color="danger" (click)="deletePersona()">
+    <ion-icon name="trash" slot="start">Delete</ion-icon>
+  </ion-button>
+</ion-content>  

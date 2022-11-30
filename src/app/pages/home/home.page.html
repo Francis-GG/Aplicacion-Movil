@@ -3,28 +3,28 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Home</ion-title>
+    <ion-title>Condutores</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-progress-bar [value]="progress"></ion-progress-bar>
 
-  <ion-content>
-    <div class="card">
-    <ion-card>
-      
-      <ion-card-header>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let persona of listadoPersona" (click)="openDetailPersona(persona)">
+      <ion-avatar slot="start">
+        <img [src]="persona.image" alt="Imagen del conductor asociado.">
+      </ion-avatar>
+      <ion-label>
+        <h6>Driver: {{persona.name}} {{persona.lastname}}</h6>
+        <h5>Mail: {{persona.email}}</h5>
+        <h5>Car: {{persona.carmodel}}</h5>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
-        <ion-card-title>Bienvenido</ion-card-title>
-      </ion-card-header>
-          
-      <ion-card-content>
-        <h3>Mathias Kaempffer</h3>
-        <br>Usuario: Conductor<br>
-        <br>Vehículo: Nissan Kicks<br>
-        <br>Color vehículo: Azul<br>
-        <br>Patente: GK SB 78<br>
-      </ion-card-content>
-    </ion-card>
-    </div>
-    
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addPersona()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
