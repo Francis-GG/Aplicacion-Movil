@@ -6,35 +6,27 @@
     <ion-title>Clima</ion-title>
   </ion-toolbar>
 </ion-header>
-  <ion-content>
+  <ion-content class="background">
     <div class="card">
-    <ion-card>
+    <ion-card id="clima-card">
       <ion-card-header>
-        <ion-card-title>Tiempo actual</ion-card-title>
+        <ion-card-title>Hoy</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-list>
-          <ion-item lines="none">
-            <ion-label id="ciudad">Ciudad: </ion-label>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-label id="temperatura">Temperatura: </ion-label>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-label id="humedad">Humedad: </ion-label>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-label id="presion">Presión: </ion-label>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-label id="viento">Viento: </ion-label>
-          </ion-item>
-          <ion-thumbnail>
-            <img id="imagenClima" alt="Imagen tiempo" src="http://openweathermap.org/img/wn/01d@2x.png" />
-          </ion-thumbnail>
-        </ion-list>
+        <ion-grid>
+          <ion-row>
+            <ion-col id="vector-clima">
+              <ion-img id="condicion-img" src="/assets/img/sunny-vector.svg"></ion-img>
+            </ion-col>
+            <ion-col id="temperatura">32º</ion-col>
+          </ion-row>
+          <ion-row id="condicion-clima"> Soleado </ion-row>
+          <ion-row class="parametro-clima" id="ciudad"> Santiago </ion-row>
+          <ion-row class="parametro-clima" id="humedad"> Humedad </ion-row>
+          <ion-row class="parametro-clima" id="sensacion-termica"> Sensación termica </ion-row>
+          <ion-row class="parametro-clima" id="viento"> Viento </ion-row>
+        </ion-grid>
       </ion-card-content>
-      <ion-button id="botonClima" (click)="funcionClima()">Obtener clima</ion-button>
     </ion-card>
     </div>
 </ion-content>
