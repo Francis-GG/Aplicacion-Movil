@@ -51,7 +51,7 @@ export class HomePage {
       this.loadingElement.dismiss();
     });
     this.listadoPersona.forEach(function (item, index) {
-      if (item.tipousuario == "conductor") {
+      if (item.tipousuario.localeCompare("conductor")) {
         this.listadoConductores.push(item);
       } else {
         this.listadoPasajeros.push(item);
