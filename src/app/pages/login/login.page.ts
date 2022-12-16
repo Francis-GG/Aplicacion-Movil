@@ -67,7 +67,7 @@ export class LoginPage implements OnInit {
     await loading.dismiss();
 
     if (user){
-      this.addPersona();
+      this.addPersona(user.providerId);
       this.router.navigateByUrl('/home',{replaceUrl:true});
     }
     else {
@@ -84,19 +84,15 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  async addPersona() {
+  async addPersona(userID) {
     const alert = await this.alertCtrl.create({
-      header:'Add Person',
+      header:'Ingrese sus datos.',
       inputs: [
         {
-          name:'name',
+          name:'id',
           type:'text',
-          placeholder:'Name'
-        },
-        {
-          name:'lastname',
-          type:'text',
-          placeholder:'Lastname',
+          placeholder:'ID',
+          value: userID
         },
         {
           name:'tipousuario',
@@ -109,11 +105,6 @@ export class LoginPage implements OnInit {
           placeholder:'Comuna de destino.',
         },
         {
-          name:'email',
-          type:'email',
-          placeholder:'correo@correo.com'
-        },
-        {
           name:'image',
           type:'url',
           placeholder:'link web image'
@@ -121,15 +112,11 @@ export class LoginPage implements OnInit {
       ],
       buttons: [
         {
-          text:'Cancel',
-          role:'cancel',
-        },
-        {
           text:'Save',
           role:'confirm',
           handler: (data) => {
             this.personaService.addPersona(data);
-            this.toastPresent('Conductor añadido.'); 
+            this.toastPresent('Sus datos han sido ingresados.'); 
           }
         }
       ]
