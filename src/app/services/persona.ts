@@ -6,4 +6,5 @@ export interface Persona {
     image:string;
     tipousuario:string;
     comuna:string;
+    tarifa:string;
 }

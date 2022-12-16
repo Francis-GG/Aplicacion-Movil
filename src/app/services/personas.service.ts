@@ -21,6 +21,7 @@ export class PersonasService {
   }
 
   addPersona(persona: Persona){
+    persona.tarifa = getRandomArbitrary(1000, 6000);
     const personaRef = collection(this.firestore, 'usuarios');
     return addDoc(personaRef,persona);
   }
@@ -35,6 +36,7 @@ export class PersonasService {
         email: persona.email,
         comuna: persona.comuna,
         image: persona.image,
+        tarifa: getRandomArbitrary(1000, 6000)
       });
   }
 
@@ -42,4 +44,8 @@ export class PersonasService {
     const personaRef = doc(this.firestore,`usuarios/${persona.id}`);
     return deleteDoc(personaRef);
   }
+}
+
+function getRandomArbitrary(min, max) {
+  return (Math.random() * (max - min) + min).toFixed(0);
 }

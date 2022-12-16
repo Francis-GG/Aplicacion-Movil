@@ -14,6 +14,10 @@ import { LoadingController } from '@ionic/angular';
 })
 export class HomePage {
   loadingElement: HTMLIonLoadingElement;
+  imagesrc: string;
+  viajeActual: string;
+  destino: string;
+  email: string;
   listadoPersona: Persona[] = [];
   listadoConductores: Persona[] = [];
   listadoPasajeros: Persona[] = [];
@@ -43,6 +47,15 @@ export class HomePage {
     this.loadingElement.present();
   }
 
+  setViajeActual(precio: string, destino: string, email: string, imgsource:string): void {
+    this.viajeActual = precio;
+    this.destino = destino;
+    this.email = email;
+    this.imagesrc = imgsource;
+    this.toastPresent("Su viaje ha sido confirmado.");
+  }
+
+
   getPersonas(): void {
     this.showLoading();
     this.personaService.getPersonas().subscribe(respuesta => {
@@ -62,7 +75,7 @@ export class HomePage {
   async openDetailPersona(persona:Persona) {  
     const modal = await this.modalCtrl.create({
       component: ModalPage,
-      componentProps: { id: persona.id },
+      componentProps: { tarifa: persona.tarifa },
       breakpoints: [0,0.5,0.8],
       initialBreakpoint:0.5
     });

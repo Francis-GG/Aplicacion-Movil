@@ -9,15 +9,29 @@
 <ion-progress-bar [value]="progress"></ion-progress-bar>
 
 <ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-avatar>
+        <img alt="Imagen del conductor." [src]="imagesrc" />
+      </ion-avatar>
+      <ion-card-title>Viaje actual: ${{viajeActual}}</ion-card-title>
+      <ion-card-subtitle>Con dirección a: {{destino}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Correo del conductor: {{email}}
+    </ion-card-content>
+  </ion-card>
   <ion-list>
-    <ion-item *ngFor="let persona of listadoPersona" (click)="openDetailPersona(persona)">
+    <ion-item *ngFor="let persona of listadoPersona" (click)="setViajeActual(persona.tarifa, persona.comuna, persona.email, persona.image)">
       <ion-avatar *ngIf="persona.tipousuario == 'conductor'" slot="start">
         <img *ngIf="persona.tipousuario == 'conductor'" [src]="persona.image" alt="Imagen del conductor asociado.">
       </ion-avatar>
       <ion-label *ngIf="persona.tipousuario == 'conductor'">
-        <h6 *ngIf="persona.tipousuario == 'conductor'" >Driver: {{persona.name}} {{persona.tipousuario}}</h6>
+        <h6 *ngIf="persona.tipousuario == 'conductor'" >Usuario: {{persona.name}} {{persona.tipousuario}}</h6>
         <h5 *ngIf="persona.tipousuario == 'conductor'">Comuna: {{persona.comuna}}</h5>
         <h5 *ngIf="persona.tipousuario == 'conductor'">Email: {{persona.email}}</h5>
+        <h5 *ngIf="persona.tipousuario == 'conductor'">Tarifa: ${{persona.tarifa}}</h5>
       </ion-label>
     </ion-item>
   </ion-list>
