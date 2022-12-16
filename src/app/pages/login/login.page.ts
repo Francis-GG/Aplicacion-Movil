@@ -89,10 +89,9 @@ export class LoginPage implements OnInit {
       header:'Ingrese sus datos.',
       inputs: [
         {
-          name:'id',
+          name:'email',
           type:'text',
-          placeholder:'ID',
-          value: userID
+          placeholder:'email@example.com'
         },
         {
           name:'tipousuario',

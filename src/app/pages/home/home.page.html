@@ -3,28 +3,23 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Condutores</ion-title>
+    <ion-title>Condutores Disponibles: </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-progress-bar [value]="progress"></ion-progress-bar>
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngFor="let persona of listadoPersona" (click)="openDetailPersona(persona)">
+    <ion-item *ngFor="let persona of listadoConductores" (click)="openDetailPersona(persona)">
       <ion-avatar slot="start">
         <img [src]="persona.image" alt="Imagen del conductor asociado.">
       </ion-avatar>
       <ion-label>
-        <h6>Driver: {{persona.name}} {{persona.lastname}}</h6>
-        <h5>Mail: {{persona.email}}</h5>
-        <h5>Car: {{persona.carmodel}}</h5>
+        <h6>Driver: {{persona.name}} {{persona.tipousuario}}</h6>
+        <h5>Mail: {{persona.comuna}}</h5>
+        <h5>Car: {{persona.email}}</h5>
       </ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addPersona()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

@@ -15,6 +15,8 @@ import { LoadingController } from '@ionic/angular';
 export class HomePage {
   loadingElement: HTMLIonLoadingElement;
   listadoPersona: Persona[] = [];
+  listadoConductores: Persona[] = [];
+  listadoPasajeros: Persona[] = [];
   constructor(private loadingCtrl: LoadingController, 
     private personaService: PersonasService, 
     private alertCtrl: AlertController, 
@@ -48,6 +50,13 @@ export class HomePage {
       this.listadoPersona = respuesta;
       this.loadingElement.dismiss();
     });
+    this.listadoPersona.forEach(function (item, index) {
+      if (item.tipousuario == "conductor") {
+        this.listadoConductores.push(item);
+      } else {
+        this.listadoPasajeros.push(item);
+      }
+    })
   }
 
   async openDetailPersona(persona:Persona) {  
@@ -60,58 +69,6 @@ export class HomePage {
     modal.present();
   }
 
-  async addPersona() {
-    const alert = await this.alertCtrl.create({
-      header:'Add Person',
-      inputs: [
-        {
-          name:'name',
-          type:'text',
-          placeholder:'Name'
-        },
-        {
-          name:'lastname',
-          type:'text',
-          placeholder:'Lastname',
-        },
-        {
-          name:'patente',
-          type:'text',
-          placeholder:'Patente'
-        },
-        {
-          name:'carmodel',
-          type:'text',
-          placeholder:'Auto',
-        },
-        {
-          name:'email',
-          type:'email',
-          placeholder:'correo@correo.com'
-        },
-        {
-          name:'image',
-          type:'url',
-          placeholder:'link web image'
-        },
-      ],
-      buttons: [
-        {
-          text:'Cancel',
-          role:'cancel',
-        },
-        {
-          text:'Save',
-          role:'confirm',
-          handler: (data) => {
-            this.personaService.addPersona(data);
-            this.toastPresent('Conductor añadido.'); 
-          }
-        }
-      ]
-      });
-      await alert.present();
-    }
 
     async toastPresent(message:string){
       const toast = await this.toastCtrl.create({
