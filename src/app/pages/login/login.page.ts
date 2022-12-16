@@ -67,6 +67,7 @@ export class LoginPage implements OnInit {
     await loading.dismiss();
 
     if (user){
+      this.addPersona();
       this.router.navigateByUrl('/home',{replaceUrl:true});
     }
     else {
