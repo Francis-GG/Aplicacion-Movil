@@ -10,14 +10,14 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngFor="let persona of listadoConductores" (click)="openDetailPersona(persona)">
-      <ion-avatar slot="start">
-        <img [src]="persona.image" alt="Imagen del conductor asociado.">
+    <ion-item *ngFor="let persona of listadoPersona" (click)="openDetailPersona(persona)">
+      <ion-avatar *ngIf="persona.tipousuario == 'conductor'" slot="start">
+        <img *ngIf="persona.tipousuario == 'conductor'" [src]="persona.image" alt="Imagen del conductor asociado.">
       </ion-avatar>
-      <ion-label>
-        <h6>Driver: {{persona.name}} {{persona.tipousuario}}</h6>
-        <h5>Comuna: {{persona.comuna}}</h5>
-        <h5>Email: {{persona.email}}</h5>
+      <ion-label *ngIf="persona.tipousuario == 'conductor'">
+        <h6 *ngIf="persona.tipousuario == 'conductor'" >Driver: {{persona.name}} {{persona.tipousuario}}</h6>
+        <h5 *ngIf="persona.tipousuario == 'conductor'">Comuna: {{persona.comuna}}</h5>
+        <h5 *ngIf="persona.tipousuario == 'conductor'">Email: {{persona.email}}</h5>
       </ion-label>
     </ion-item>
   </ion-list>
