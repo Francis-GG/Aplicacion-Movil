@@ -31,9 +31,9 @@ export class PersonasService {
       { 
         name: persona.name, 
         lastname: persona.lastname,  
-        carmodel: persona.carmodel,
+        tipousuario: persona.tipousuario,
         email: persona.email,
-        patente: persona.patente,
+        comuna: persona.comuna,
         image: persona.image,
       });
   }

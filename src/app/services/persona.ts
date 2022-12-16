@@ -4,6 +4,6 @@ export interface Persona {
     lastname:string;
     email:string;
     image:string;
-    patente:string;
-    carmodel:string;
+    tipousuario:string;
+    comuna:string;
 }

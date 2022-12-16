@@ -1,8 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { Component, Input } from '@angular/core';
+import {  ModalController, ToastController } from '@ionic/angular';
+import { Auth } from '@angular/fire/auth';
+import { doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
+import { Persona } from 'src/app/services/persona';
+import { PersonasService } from 'src/app/services/personas.service';
+import { ModalPage } from '../modal/modal.page';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +22,9 @@ export class LoginPage implements OnInit {
   credentials!: FormGroup;
 
   constructor(
+    private personaService: PersonasService,  
+    private modalCtrl:ModalController,
+    private toastCtrl:ToastController,
     private formBuilder:FormBuilder,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
@@ -71,5 +82,66 @@ export class LoginPage implements OnInit {
     });
     await alert.present();
   }
+
+  async addPersona() {
+    const alert = await this.alertCtrl.create({
+      header:'Add Person',
+      inputs: [
+        {
+          name:'name',
+          type:'text',
+          placeholder:'Name'
+        },
+        {
+          name:'lastname',
+          type:'text',
+          placeholder:'Lastname',
+        },
+        {
+          name:'tipousuario',
+          type:'text',
+          placeholder:'pasajero/conductor'
+        },
+        {
+          name:'comuna',
+          type:'text',
+          placeholder:'Comuna de destino.',
+        },
+        {
+          name:'email',
+          type:'email',
+          placeholder:'correo@correo.com'
+        },
+        {
+          name:'image',
+          type:'url',
+          placeholder:'link web image'
+        },
+      ],
+      buttons: [
+        {
+          text:'Cancel',
+          role:'cancel',
+        },
+        {
+          text:'Save',
+          role:'confirm',
+          handler: (data) => {
+            this.personaService.addPersona(data);
+            this.toastPresent('Conductor añadido.'); 
+          }
+        }
+      ]
+      });
+      await alert.present();
+    }
+
+    async toastPresent(message:string){
+      const toast = await this.toastCtrl.create({
+        message:message,
+        duration:2000,
+      })
+      toast.present();
+    }
 
 }
